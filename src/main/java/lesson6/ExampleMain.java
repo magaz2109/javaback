@@ -21,22 +21,17 @@ public class ExampleMain {
             SqlSessionFactory sqlSessionFactory = new
                     SqlSessionFactoryBuilder().build(inputStream);
             session = sqlSessionFactory.openSession();
-            db.dao.CategoriesMapper categoriesMapper = session.getMapper(db.dao.CategoriesMapper.class);
-            db.model.CategoriesExample example = new db.model.CategoriesExample();
+            lesson6.db.dao.CategoriesMapper categoriesMapper = session.getMapper(lesson6.db.dao.CategoriesMapper.class);
+            lesson6.db.model.CategoriesExample example = new lesson6.db.model.CategoriesExample();
 
-            example.createCriteria().andIdEqualTo(1);
-            List<db.model.Categories> list = categoriesMapper.selectByExample(example);
+            example.createCriteria().andIdEqualTo(1L);
+            List<lesson6.db.model.Categories> list = categoriesMapper.selectByExample(example);
             System.out.println(categoriesMapper.countByExample(example));
 
-            db.model.Categories categories = new db.model.Categories();
-            categories.setTitle("test");
-            categoriesMapper.insert(categories);
-            session.commit();
-
-            db.model.CategoriesExample example2 = new db.model.CategoriesExample();
+            lesson6.db.model.CategoriesExample example2 = new lesson6.db.model.CategoriesExample();
             example2.createCriteria().andTitleLike("%test%");
-            List<db.model.Categories> list2 = categoriesMapper.selectByExample(example2);
-            db.model.Categories categories2 = list2.get(0);
+            List<lesson6.db.model.Categories> list2 = categoriesMapper.selectByExample(example2);
+            lesson6.db.model.Categories categories2 = list2.get(0);
             categories2.setTitle("test100");
             categoriesMapper.updateByPrimaryKey(categories2);
             session.commit();

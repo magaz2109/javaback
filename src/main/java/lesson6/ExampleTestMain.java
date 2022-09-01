@@ -16,19 +16,15 @@ public class ExampleTestMain {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        db.dao.CategoriesMapper categoriesMapper = sqlSession.getMapper(db.dao.CategoriesMapper.class);
-        db.model.CategoriesExample categoriesExample = new db.model.CategoriesExample();
+        lesson6.db.dao.CategoriesMapper categoriesMapper = sqlSession.getMapper(lesson6.db.dao.CategoriesMapper.class);
+        lesson6.db.model.CategoriesExample categoriesExample = new lesson6.db.model.CategoriesExample();
 
-        categoriesExample.createCriteria().andIdEqualTo(1);
+        categoriesExample.createCriteria().andIdEqualTo(1L);
 
 
-        db.model.Categories selected = categoriesMapper.selectByPrimaryKey(2);
+        lesson6.db.model.Categories selected = categoriesMapper.selectByPrimaryKey(2L);
         System.out.println("ID: " + selected.getId() + "\ntitle: " + selected.getTitle());
 
-        db.model.Categories categories = new db.model.Categories();
-        categories.setTitle("Test");
-        categoriesMapper.insert(categories);
-        sqlSession.commit();
     }
 
 }
